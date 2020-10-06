@@ -83,6 +83,8 @@
                     foreach($batteries as $battery) { // Pour toutes les batteries
                         if(($battery->cells+$pathCells) <= $cells) // Si l'ajout de la batterie ne dépasse pas la taille des cellules
                             if($dischargeNeeded <= $battery->dischargeCapacity) { // Si la batterie a assez de décharge continue
+                                if(!$path instanceof ArrayObject)
+                                    $path = new ArrayObject($path);
                                 $newPath = $path->getArrayCopy();
                                 $newPath[] = $battery;
                                 recurPath($newPath);
